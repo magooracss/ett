@@ -3,73 +3,74 @@ CREATE DATABASE IF NOT EXISTS ETT;
 
 USE ETT;
 
-CREATE TABLE autores (
+CREATE TABLE authors (
 	  id	int not null auto_increment
-	, nombre	varchar(500) null
+	, name		varchar(500) null
 	, mail		varchar(50) not null
-	, ciudad	int	default 0
-	, fNacimiento	date
-	, personaJuridica	boolean default 1
-	, notas		blob
+	, password	varchar(30) 
+	, city		int	default 0
+	, birthday	date
+	, isHuman	boolean default 1
+	, notes		blob
 	, avatar	blob
 	, PRIMARY KEY (id)
 	, UNIQUE KEY mail (mail)
 
 ) ENGINE=INNODB;
 
-CREATE TABLE mascotas (
+CREATE TABLE pets (
 	  id	int not null auto_increment
-	, nombre	varchar (100) null
-	, apodo		varchar (50)
-	, ciudad	int 	default 0
+	, name	varchar (100) null
+	, nickname	varchar (50)
+	, city		int 	default 0
 	, avatar	blob
 	, PRIMARY KEY (id)
 ) ENGINE=INNODB;
 
-CREATE TABLE autoresmascotas (
+CREATE TABLE authorspets (
 	   id	int not null auto_increment
-	, autor_id	int not null
-	, mascota_id	int not null
-	, cuando	date
-	, como		varchar(500)
-	, donde		varchar(500)
+	, author_id	int not null
+	, pet_id	int not null
+	, whenMet	date
+	, howMet	varchar(500)
+	, whereMet	varchar(500)
 	, PRIMARY KEY (id)
-	, INDEX autor_idx  (autor_id)
-	, FOREIGN  KEY (autor_id)
-		REFERENCES autores(id)
+	, INDEX author_idx  (author_id)
+	, FOREIGN  KEY (author_id)
+		REFERENCES authors(id)
 		ON DELETE CASCADE
-	, INDEX mascota_idx (mascota_id)
-	, FOREIGN KEY (mascota_id)
-		REFERENCES mascotas(id)
+	, INDEX pet_idx (pet_id)
+	, FOREIGN KEY (pet_id)
+		REFERENCES pets(id)
 		ON DELETE CASCADE
 ) ENGINE=INNODB;
 
-CREATE TABLE historias (
+CREATE TABLE tales (
 	  id	int not null auto_increment
-	, titulo	varchar(200) not null
-	, fpublicacion	date
-	, autor_id	int not null
-	, foto		blob
-        , texto		blob
+	, subject	varchar(200) not null
+	, published	date
+	, author_id	int not null
+	, image		blob
+        , story		blob
 	, PRIMARY KEY (id)
-	, INDEX autor_idx (autor_id)
-	, FOREIGN KEY (autor_id)
-	 	REFERENCES autores(id)
+	, INDEX author_idx (author_id)
+	, FOREIGN KEY (author_id)
+	 	REFERENCES authors(id)
 		ON DELETE CASCADE
 ) ENGINE=INNODB;
 
-CREATE TABLE historiasmascotas (
+CREATE TABLE talespets (
 	  id int not null auto_increment
-	, historia_id	int not null
-	, mascota_id	int not null
+	, tale_id	int not null
+	, pet_id	int not null
 	, PRIMARY KEY(id)
-	, INDEX historia_idx (historia_id)
-	, FOREIGN KEY (historia_id)
-		REFERENCES historias(id)
+	, INDEX tale_idx (tale_id)
+	, FOREIGN KEY (tale_id)
+		REFERENCES tales(id)
 		ON DELETE CASCADE
-	, INDEX mascota_idx (mascota_id)
-	, FOREIGN KEY (mascota_id)
-		REFERENCES mascotas (id)
+	, INDEX pet_idx (pet_id)
+	, FOREIGN KEY (pet_id)
+		REFERENCES pets (id)
 		ON DELETE CASCADE
 ) ENGINE=INNODB;
 
@@ -79,14 +80,14 @@ CREATE TABLE tags (
 	, PRIMARY KEY (id)
 ) ENGINE=INNODB;
 
-CREATE TABLE historiastag (
+CREATE TABLE talestag (
 	  id int not null auto_increment
-	, historia_id	int not null
+	, tale_id	int not null
 	, tag_id int not null
 	, PRIMARY KEY (id)
-	, INDEX historia_idx (historia_id)
-	, FOREIGN KEY (historia_id)
-		REFERENCES historias (id)
+	, INDEX tale_idx (tale_id)
+	, FOREIGN KEY (tale_id)
+		REFERENCES tales (id)
 		ON DELETE CASCADE
 	, INDEX tags_idx (tag_id)
 	, FOREIGN KEY (tag_id)
