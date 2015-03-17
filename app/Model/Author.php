@@ -1,6 +1,5 @@
 <?php
 
-
 class Author extends AppModel {
 	public $name = 'Author';
  
@@ -10,18 +9,6 @@ class Author extends AppModel {
 		               ,'required' => true)
 			        
 
-  	 , 'mail' => array(
-		 'rule' => array('email', true)
-		         ,'message' => 'Por favor, necesito una dirección válidade correo.'
-			 ,'required' => true
-		 )
-
-
-		           
-	 ,'password' => array(
-                              'rule' => array('minLength', '8'),
-                              'message' => 'Por lo menos 8 caracteres de longitud'
-                            )
         ,'birthdate' => array(
                               'rule' => 'date',
                               'message' => 'Ingrese una fecha válida',

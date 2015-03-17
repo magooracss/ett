@@ -3,21 +3,15 @@ CREATE DATABASE IF NOT EXISTS ETT;
 
 USE ETT;
 
-CREATE TABLE authors (
+
+CREATE TABLE users (
 	  id	int not null auto_increment
-	, name		varchar(500) null
 	, mail		varchar(50) not null
 	, password	varchar(30) 
-	, city		int	default 0
-	, birthday	date
-	, isHuman	boolean default 1
-	, notes		blob
-	, avatar	blob
 	, PRIMARY KEY (id)
 	, UNIQUE KEY mail (mail)
-
 ) ENGINE=INNODB;
-
+ 
 CREATE TABLE pets (
 	  id	int not null auto_increment
 	, name	varchar (100) null

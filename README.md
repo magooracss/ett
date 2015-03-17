@@ -11,6 +11,6 @@ Este es un desarrollo web que espero vea la luz en poco tiempo en www.epictrivia
  * [Wysiwyg Helpers Plugin](https://github.com/josegonzalez/cakephp-wysiwyg/) 2.0 para el editor de texto
 
 ## Contacto
- 
+ Idea & Diseño: Daniela E. Vazquez dani.dcv@gmail.com
  Programación: Magoo lw4dbf@gmail.com
  
